@@ -1,0 +1,18 @@
+# ignore all the files
+
+/*
+
+!/config
+/config/*
+
+!/config/alacritty
+!/config/fish
+!/config/nitrogen
+!/config/picom
+!/config/qtile
+
+/config/qtile/*
+!/config/qtile/*.py
+
+!/config/qtile/scripts
+
