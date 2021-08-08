@@ -21,4 +21,4 @@
 !/.config/qtile/*.py
 !/.config/qtile/scripts
 
-*.bak
+*.backup

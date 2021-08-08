@@ -7,6 +7,10 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, Sc
 from libqtile.lazy import lazy
 from time import time
 from pathlib import Path
+#from locale import setlocale
+import time 
+
+#setlocale(LC_ALL, "pl_pl")
 
 mod = "mod4"                            # windows key as super key
 terminal = "alacritty -e fish"          # default terminal
@@ -56,7 +60,6 @@ keys = [                                # binds
                 lazy.layout.shuffle_up(), desc="window up"),
             
         # window size management
-        
             # by direction
                 Key([mod, "control"], "h",
                     lazy.layout.grow_left(), desc="expand window to the left"),
@@ -95,6 +98,13 @@ def load_colors(cache):
 # loading the colors
 load_colors(cache)
 
+# timezone setter
+def set_timezone(timezone):
+    os.environ['TZ'] = timezone
+    time.tzset()
+
+# set_timezone('Europe/London')
+
 # group names and preferred layout
 group_names = [("Internet",         {'layout': 'monadtall'}),
                ("Dev",              {'layout': 'monadtall'}),
@@ -131,10 +141,10 @@ keys.extend([
 ])
 
 layout_theme = {
-    "border_width": 3,
-    "margin": 16,
-    "border_normal": colors[0],
-    "border_focus": colors[6],
+    "border_width"  : 3,
+    "margin"        : 16,
+    "border_normal" : colors[0],
+    "border_focus"  : colors[6],
 }
 
 layouts = [
@@ -154,9 +164,9 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="SourceCodePro",
-    fontsize=13,
-    padding=3,
+    font        = "SourceCodePro",
+    fontsize    = 13,
+    padding     = 3,
     foreground=colors[7],
 )
 extension_defaults = widget_defaults.copy()
@@ -166,23 +176,24 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
-                    block_highlight_text_color=colors[10],
-                    active=colors[7],
-                    inactive=colors[6],
-                    this_current_screen_border=colors[13],
-                    this_screen_border=colors[14],
-                    highlight_method='text',
-                    highlight_color=[colors[14], colors[12]],
-                    urgent_alert_method='text',
-                    urgent_border=colors[9],
-                    urgent_text=colors[9],
-                    hide_unused=True,
-                    foreground=colors[14],
+                    disable_drag                = True,
+                    block_highlight_text_color  = colors[10],
+                    active                      = colors[7],
+                    this_current_screen_border  = colors[13],
+                    this_screen_border          = colors[14],
+                    other_screen_border         = colors[12],
+                    highlight_method            = 'text',
+                    highlight_color             = [colors[14], colors[12]],
+                    urgent_alert_method         = 'text',
+                    urgent_border               = colors[9],
+                    urgent_text                 = colors[9],
+                    hide_unused                 = True,
                 ),
                 widget.WindowName(),
                 widget.Systray(),
                 widget.Clock(
-                    format="%A, %w %B %Y, %H:%M:%S", padding=25,
+                    format                      = "%A, %d %B %Y, %H:%M:%S",
+                    padding                     = 25,
                 ),
             ],
             30,
@@ -192,6 +203,7 @@ screens = [
     ),
     Screen(),
 ]
+
 
 # floating windows
 mouse = [
@@ -219,7 +231,6 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(title="copyq"),
     ],
     **layout_theme
 )
