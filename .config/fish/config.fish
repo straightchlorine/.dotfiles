@@ -88,13 +88,19 @@ end
 # displays the commits 
 # lolcat with low frequency creates various gradient colouring for the 
 function commits
-    git log --author="$argv" --format=format:"%h - %ad  - %s%n"  --date=format:"%d %B %Y, %H:%M:%S" | lolcat -F 0.02
+	git log --author="$argv" --format=format:"%h - %ad  - %s%n"  --date=format:"%d %B %Y, %H:%M:%S" | lolcat -F 0.02
 end
 
 # backup function
-# example: backup <filename>
 function backup --argument filename
-    cp $filename $filename.backup
+	cp $filename $filename.backup
+end
+
+# background setter
+function background --argument background 
+	rm -rf ~/assets/wallpapers/current_background/background
+	ln ~/assets/wallpapers/$background ~/assets/wallpapers/current_background/background
+	nitrogen --restore
 end
 
 # spark aliases
