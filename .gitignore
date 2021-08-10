@@ -2,6 +2,9 @@
 
 /*
 
+# exclude single config files
+!.vimrc
+
 # excluding the hard link to the wallpaper
 !/assets
 /assets/*
