@@ -1,164 +1,187 @@
-" URL: https://vim.wikia.com/wiki/Example_vimrc
-" Authors: https://vim.wikia.com/wiki/Vim_on_Libera_Chat
-" Description: A minimal, but feature rich, example .vimrc. If you are a
-"              newbie, basing your first .vimrc on this file is a good choice.
-"              If you're a more advanced user, building your own .vimrc based
-"              on this file is still a good idea.
+" plug-vim setup
+call plug#begin('~/.vim/plugged')
 
-"------------------------------------------------------------
-" Features {{{1
-"
-" These options and commands enable some very useful features in Vim, that
-" no user should have to live without.
+    " plugin management
+    Plug 'gmarik/Vundle.vim'                            " vundle
+    
+    " visual changes
+    Plug 'vim-airline/vim-airline'                      " airline status bar
+    Plug 'vim-airline/vim-airline-themes'               " airline status bar themes
+    Plug 'frazrepo/vim-rainbow'                         " coloured parentheses
+   
+    " file management
+    Plug 'vifm/vifm.vim'                                " vifm
+    Plug 'scrooloose/nerdtree'                          " nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'      " nerdtree hightliting
+    Plug 'ryanoasis/vim-devicons'                       " nerdtree icons
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf - file finder
+    Plug 'junegunn/fzf.vim' 
 
-" Set 'nocompatible' to ward off unexpected things that your distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
-set nocompatible
+    " helpers
+    Plug 'vimwiki/vimwiki'                              " vimwiki 
+    Plug 'jreybert/vimagit'                             " vimagit - git helper
 
-" Attempt to determine the type of a file based on its name and possibly its
-" contents. Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
-if has('filetype')
-  filetype indent plugin on
-endif
+    " writing
+    Plug 'tpope/vim-surround'                           " changnig the wrappers around expressions
 
-" Enable syntax highlighting
-if has('syntax')
-  syntax on
-endif
+    " highliting
+    Plug 'vim-python/python-syntax'                     " python highliting 
+    Plug 'ap/vim-css-color'                             " colour previews for CSS
 
-"------------------------------------------------------------
-" Must have options {{{1
-"
-" These are highly recommended options.
+    " focus and view management
+    Plug 'junegunn/goyo.vim'                           " zen-mode 
+    Plug 'junegunn/limelight.vim'                      " focus on a section of code 
 
-" Vim with default settings does not allow easy switching between multiple files
-" in the same editor window. Users can use multiple split windows or multiple
-" tab pages to edit multiple files, but it is still best to enable an option to
-" allow easier switching between files.
-"
-" One such option is the 'hidden' option, which allows you to re-use the same
-" window and switch from an unsaved buffer without saving it first. Also allows
-" you to keep an undo history for multiple files when re-using the same window
-" in this way. Note that using persistent undo also lets you undo in multiple
-" files even in the same window, but is less efficient and is actually designed
-" for keeping undo history after closing Vim entirely. Vim will complain if you
-" try to quit without saving, and swap files will keep you safe if your computer
-" crashes.
-set hidden
+call plug#end()
 
-" Note that not everyone likes working this way (with the hidden option).
-" Alternatives include using tabs or split windows instead of re-using the same
-" window as mentioned above, and/or either of the following options:
-" set confirm
-" set autowriteall
+filetype plugin indent on    " required
 
-" Better command-line completion
-set wildmenu
+" settings
 
-" Show partial commands in the last line of the screen
-set showcmd
+set nobackup                    " no backups
+set noswapfile                  " turning off generation of swapfiles
 
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-" mapping of <C-L> below)
-set hlsearch
+set path+=**					" searching direcotry recursively
+set wildmenu					" autocomplete on tab
+set incsearch                   " incremental search
+set hidden                      " multiple buffers
+set t_Co=256                    " 256 colors if supported.
+set number relativenumber       " line numbers
+set clipboard=unnamedplus       " global clipboard support.
 
-" Modelines have historically been a source of security vulnerabilities. As
-" such, it may be a good idea to disable them and use the securemodelines
-" script, <http://www.vim.org/scripts/script.php?script_id=1876>.
-" set nomodeline
+syntax enable
+let g:rehash256 = 1
 
+" mapping escape to exit instert mode
+:imap ii <Esc>
 
-"------------------------------------------------------------
-" Usability options {{{1
-"
-" These are options that users frequently set in their .vimrc. Some of them
-" change Vim's behaviour in ways which deviate from the true Vi way, but
-" which are considered to add usability. Which, if any, of these options to
-" use is very much a personal preference, but they are harmless.
-
-" Use case insensitive search, except when using capital letters
-set ignorecase
-set smartcase
-
-" Allow backspacing over autoindent, line breaks and start of insert action
-set backspace=indent,eol,start
-
-" When opening a new line and no filetype-specific indenting is enabled, keep
-" the same indent as the line you're currently on. Useful for READMEs, etc.
-set autoindent
-
-" Stop certain movements from always going to the first character of a line.
-" While this behaviour deviates from that of Vi, it does what most users
-" coming from other editors would expect.
-set nostartofline
-
-" Display the cursor position on the last line of the screen or in the status
-" line of a window
-set ruler
-
-" Always display the status line, even if only one window is displayed
+" always show the status bar
 set laststatus=2
 
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
-set confirm
+" non-normal modes showing in powerline and below powerline.
+set noshowmode
 
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
+" identation settings
+set expandtab                   " replaces tab with adequate number of spaces 
+set smarttab                    " properly verifies how many spaces are left for a proper tab 
+set shiftwidth=4                " one space equivalent 
+set tabstop=4                   "                      to four spaces 
 
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
-set t_vb=
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '►'
+let g:NERDTreeDirArrowCollapsible = '▼'
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize=38
 
-" Enable use of the mouse for all modes
-if has('mouse')
-  set mouse=a
-endif
+" colouring and themes
+highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
+highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
+highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
+highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
+highlight Directory        guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
+highlight StatusLine       guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+highlight StatusLineNC     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+highlight NERDTreeClosable guifg=#98be65 ctermfg=2
+highlight NERDTreeOpenable guifg=#5b6268 ctermfg=8
+highlight Comment          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=italic
+highlight Constant         guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
+highlight Special          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
+highlight Identifier       guifg=#5699af ctermfg=6    guibg=none    ctermbg=none  cterm=none
+highlight PreProc          guifg=#c678dd ctermfg=5    guibg=none    ctermbg=none  cterm=none
+highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
+highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
+highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
+highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none  cterm=none
 
-" Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
-set cmdheight=2
+" highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
+" highlight Folded           ctermfg=103     ctermbg=234     cterm=none
+" highlight FoldColumn       ctermfg=103     ctermbg=234     cterm=none
+" highlight DiffAdd          ctermfg=none    ctermbg=23      cterm=none
+" highlight DiffChange       ctermfg=none    ctermbg=56      cterm=none
+" highlight DiffDelete       ctermfg=168     ctermbg=96      cterm=none
+" highlight DiffText         ctermfg=0       ctermbg=80      cterm=none
+" highlight SignColumn       ctermfg=244     ctermbg=235     cterm=none
+" highlight Conceal          ctermfg=251     ctermbg=none    cterm=none
+" highlight SpellBad         ctermfg=168     ctermbg=none    cterm=underline
+" highlight SpellCap         ctermfg=80      ctermbg=none    cterm=underline
+" highlight SpellRare        ctermfg=121     ctermbg=none    cterm=underline
+" highlight SpellLocal       ctermfg=186     ctermbg=none    cterm=underline
+" highlight Pmenu            ctermfg=251     ctermbg=234     cterm=none
+" highlight PmenuSel         ctermfg=0       ctermbg=111     cterm=none
+" highlight PmenuSbar        ctermfg=206     ctermbg=235     cterm=none
+" highlight PmenuThumb       ctermfg=235     ctermbg=206     cterm=none
+" highlight TabLine          ctermfg=244     ctermbg=234     cterm=none
+" highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
+" highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
+" highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
+" highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none
+" highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
+" highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
+" highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
+" highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
 
-" Display line numbers on the left
-set number
+" vifm configuration
+map <Leader>vv :Vifm<CR>
+map <Leader>vs :VsplitVifm<CR>
+map <Leader>sp :SplitVifm<CR>
+map <Leader>dv :DiffVifm<CR>
+map <Leader>tv :TabVifm<CR>
 
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
+" vimwiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
+" markup
+let g:instant_markdown_autostart = 0         " turns off auto-preview
+let g:instant_markdown_browser = "firefox"   " firefox as a browser (subject to change) 
+map <Leader>md :InstantMarkdownPreview<CR>   " previous .md file
+map <Leader>ms :InstantMarkdownStop<CR>      " kill the preview 
 
+" terminal inside vim
+map <Leader>tt :vnew term://fish<CR>
 
-"------------------------------------------------------------
-" Indentation options {{{1
-"
-" Indentation settings according to personal preference.
+" mouse scrolling
+set mouse=nicr
+set mouse=a
 
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+" alacritty resize bug
+autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 
-" Indentation settings for using hard tabs for indent. Display tabs as
-" four characters wide.
-"set shiftwidth=4
-"set tabstop=4
+" split to tabs
+set splitbelow splitright
 
+" split in defined direction
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-"------------------------------------------------------------
-" Mappings {{{1
-"
-" Useful mappings
+" adjust the size
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-map Y y$
+" toggling between the orientation - horizontal -> vertical &&
+" vertical -> horizontal
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
+" removes the pipes
+set fillchars+=vert:\ 
 
-"------------------------------------------------------------
+" python highlighting
+let g:python_highlight_all = 1
+
+" other options left to organise
+au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
+au BufEnter *.org            call org#SetOrgFileType()
+
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+set guifont=SauceCodePro\ Nerd\ Font:h15

@@ -18,6 +18,8 @@
 
 !/.config/alacritty/
 !/.config/fish
+!/.config/fish/config.fish
+/.config/fish/*
 !/.config/nitrogen
 /.config/nitrogen/nitrogen.cfg
 !/.config/picom
