@@ -6,11 +6,11 @@
 !.vimrc
 
 # excluding the hard link to the wallpaper
-!/assets
-/assets/*
-!/assets/wallpapers
-/assets/wallpapers/*
-!/assets/wallpapers/current_background
+#!/assets
+#/assets/*
+#!/assets/wallpapers
+#/assets/wallpapers/*
+#!/assets/wallpapers/current_background
 
 # excluding the configs
 !/.config

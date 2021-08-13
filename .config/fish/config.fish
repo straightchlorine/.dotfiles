@@ -88,7 +88,7 @@ end
 # displays the commits 
 # lolcat with low frequency creates various gradient colouring for the 
 function commits
-	git log --author="$argv" --format=format:"%h - %ad  - %s%n"  --date=format:"%d %B %Y, %H:%M:%S" | lolcat -F 0.02
+	git log --author="$argv" --format=format:"%h - %ad  - %s%n"  --date=format:"%d %B %Y, %H:%M:%S" 
 end
 
 # backup function
@@ -97,10 +97,31 @@ function backup --argument filename
 end
 
 # background setter
-function background --argument background 
-	rm -rf ~/assets/wallpapers/current_background/background
-	ln ~/assets/wallpapers/$background ~/assets/wallpapers/current_background/background
-	nitrogen --restore
+function background --argument filepath
+
+        # remove previous hard link to the background
+        rm -rf ~/assets/wallpapers/current_background/background	
+
+        # creating another hard link, replacing another one
+        ln $filepath ~/assets/wallpapers/current_background/background
+        
+        # restoring the wallpaper
+        nitrogen --restore
+      
+        # adding the image to the wpgtk 
+        wpg -a $filepath
+
+        # extracting the name of the file from given path
+        string match -raiq '(?<wallpaper>)\w*.png|.jpg|.jpeg' $filepath  
+       
+        # setting the theme without setting the wallpaper 
+        wpg -ns $wallpaper
+
+        # clearing the notofications
+        /bin/clear        
+
+        # eyecandy
+        wpg --preview
 end
 
 # spark aliases
