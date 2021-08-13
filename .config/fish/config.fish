@@ -124,6 +124,22 @@ function background --argument filepath
         wpg --preview
 end
 
+# shuffle the colourscheme
+function shuffle
+
+    # shuffle the colourscheme of the current wallpaper
+    wpg -z (wpg -c)
+
+    # set the new scheme
+    wpg -ns (wpg -c) 
+    
+    # clearing the notifications
+    /bin/clear
+
+    # both eyecandy and visual representation of new theme
+    wpg --preview
+end
+
 # spark aliases
 alias clear='/bin/clear; colorscript random;  echo; echo'
 
