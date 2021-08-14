@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
 
     " writing
     Plug 'tpope/vim-surround'                           " changnig the wrappers around expressions
+    Plug 'JamshedVesuna/vim-markdown-preview'           " preview of markdown files
 
     " highliting
     Plug 'vim-python/python-syntax'                     " python highliting 
