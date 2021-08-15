@@ -99,15 +99,15 @@ end
 # background setter
 function background --argument filepath
 
+        # removes all configurations
+        wpg -d (wpg -l)
+
         # remove previous hard link to the background
         rm -rf ~/assets/wallpapers/current_background/background	
 
         # creating another hard link, replacing another one
         ln $filepath ~/assets/wallpapers/current_background/background
         
-        # restoring the wallpaper
-        nitrogen --restore
-      
         # adding the image to the wpgtk 
         wpg -a $filepath
 
@@ -116,6 +116,9 @@ function background --argument filepath
        
         # setting the theme without setting the wallpaper 
         wpg -ns $wallpaper
+
+        # restoring the wallpaper
+        nitrogen --restore
 
         # clearing the notofications
         /bin/clear        
@@ -128,10 +131,10 @@ end
 function shuffle
 
     # shuffle the colourscheme of the current wallpaper
-    wpg -z (wpg -c)
+    wpg -z (wpg -l)
 
     # set the new scheme
-    wpg -ns (wpg -c) 
+    wpg -ns (wpg -l) 
     
     # clearing the notifications
     /bin/clear
