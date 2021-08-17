@@ -143,8 +143,11 @@ function shuffle
     wpg --preview
 end
 
-# spark aliases
-alias clear='/bin/clear; colorscript random;  echo; echo'
+# simple wrapper for clear command
+function clear
+    command clear
+    command colorscript random
+end
 
 # managing pwd
 alias ..='cd ..'
