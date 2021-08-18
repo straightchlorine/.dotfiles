@@ -7,10 +7,6 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, Sc
 from libqtile.lazy import lazy
 from time import time
 from pathlib import Path
-#from locale import setlocale
-import time 
-
-#setlocale(LC_ALL, "pl_pl")
 
 mod = "mod4"                            # windows key as super key
 terminal = "alacritty -e fish"          # default terminal
@@ -42,7 +38,7 @@ keys = [                                # binds
                 lazy.layout.up(), desc="focus up"),
             Key([mod], "space",
                 lazy.layout.next(), desc="focus to the other window"),
-        
+
         # switching focus between motnitors
             Key([mod], "period",
                 lazy.next_screen(), desc='Move focus to next monitor'),
@@ -58,7 +54,7 @@ keys = [                                # binds
                 lazy.layout.shuffle_down(), desc="window down"),
             Key([mod, "shift"], "k",
                 lazy.layout.shuffle_up(), desc="window up"),
-            
+
         # window size management
             # by direction
                 Key([mod, "control"], "h",
@@ -69,13 +65,13 @@ keys = [                                # binds
                     lazy.layout.grow_down(), desc="expand window down"),
                 Key([mod, "control"], "k",
                     lazy.layout.grow_up(), desc="expand window up"),
-    
+
             # regular
                 Key([mod], "i",
                     lazy.layout.grow()),
                 Key([mod], "m",
                     lazy.layout.shrink()),
-            
+
             # general functions
                 Key([mod], "o",
                     lazy.layout.maximize()),
@@ -90,7 +86,7 @@ cache = "/home/goldberg/.cache/wal/colors"  # directory, where wpgtk dumps gener
 
 # function loading the colors from cache directory
 def load_colors(cache):
-    with open(cache, "r") as file:  
+    with open(cache, "r") as file:
         for _ in range(15):
             colors.append(file.readline().strip())
     lazy.reload()
@@ -190,9 +186,32 @@ screens = [
                     hide_unused                 = True,
                 ),
                 widget.WindowName(),
-                widget.Systray(),
+                widget.CPU(
+                    format                      = ' CPU {load_percent}% ',
+                ),
+                widget.Sep(
+                    size_percent                = 30,
+                ),
+                widget.Memory(
+                    format                      = ' RAM {MemPercent}% ',
+                ),
+                widget.Sep(
+                    size_percent                = 40,
+                ),
+                widget.Net(
+                    interface                   = 'enp3s0',
+                    format                      = ' {down} ↓↑ {up} ',
+                ),
+                widget.Spacer(
+                    length                      = 436,
+                ),
+                #widget.CPUGraph(
+                #    border_color                = colors[0],
+                #    graph_color                 = colors[7],
+                #    fill_color                  = colors[0],
+                #),
                 widget.Clock(
-                    format                      = "%A, %d %B %Y, %H:%M:%S",
+                    format                      = '%A, %d %B %Y, %H:%M:%S',
                     padding                     = 25,
                 ),
             ],
