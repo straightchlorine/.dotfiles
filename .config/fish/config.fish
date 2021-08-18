@@ -1,6 +1,7 @@
 # paths
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
+set CLASSPATH ~/current_project $CLASSPATH
 
 # fish greeting supressed
 set fish_greeting
