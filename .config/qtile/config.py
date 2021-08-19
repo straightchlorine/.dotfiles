@@ -185,31 +185,38 @@ screens = [
                     urgent_text                 = colors[9],
                     hide_unused                 = True,
                 ),
-                widget.WindowName(),
+                widget.Sep(
+                    linewidth                   = 0,
+                    size_percent                = 40,
+                    padding                     = 25,
+                ),
+                widget.WindowName(
+                    format                      = ''
+                ),
                 widget.CPU(
+                    fontsize                    = 10,
                     format                      = ' CPU {load_percent}% ',
                 ),
                 widget.Sep(
                     size_percent                = 30,
                 ),
                 widget.Memory(
+                    fontsize                    = 10,
                     format                      = ' RAM {MemPercent}% ',
                 ),
                 widget.Sep(
                     size_percent                = 40,
                 ),
                 widget.Net(
+                    fontsize                    = 10,
                     interface                   = 'enp3s0',
                     format                      = ' {down} ↓↑ {up} ',
                 ),
-                widget.Spacer(
-                    length                      = 436,
+                widget.Sep(
+                    linewidth                   = 0,
+                    size_percent                = 40,
+                    padding                     = 485,
                 ),
-                #widget.CPUGraph(
-                #    border_color                = colors[0],
-                #    graph_color                 = colors[7],
-                #    fill_color                  = colors[0],
-                #),
                 widget.Clock(
                     format                      = '%A, %d %B %Y, %H:%M:%S',
                     padding                     = 25,
