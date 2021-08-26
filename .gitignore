@@ -4,13 +4,7 @@
 
 # exclude single config files
 !.vimrc
-
-# excluding the hard link to the wallpaper
-#!/assets
-#/assets/*
-#!/assets/wallpapers
-#/assets/wallpapers/*
-#!/assets/wallpapers/current_background
+!.tmux.conf
 
 # excluding the configs
 !/.config

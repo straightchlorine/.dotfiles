@@ -20,10 +20,12 @@ call plug#begin('~/.vim/plugged')
     " helpers
     Plug 'vimwiki/vimwiki'                              " vimwiki 
     Plug 'jreybert/vimagit'                             " vimagit - git helper
+    Plug 'tpope/vim-fugitive'                           " another git plugin (need to learn)
 
     " writing
     Plug 'tpope/vim-surround'                           " changnig the wrappers around expressions
     Plug 'JamshedVesuna/vim-markdown-preview'           " preview of markdown files
+    Plug 'christoomey/vim-tmux-navigator'               " tmux navigation support
 
     " highliting
     Plug 'vim-python/python-syntax'                     " python highliting 
@@ -42,15 +44,15 @@ filetype plugin indent on    " required
 set nobackup                    " no backups
 set noswapfile                  " turning off generation of swapfiles
 
-set path+=**					" searching direcotry recursively
-set wildmenu					" autocomplete on tab
+set path+=**			" searching direcotry recursively
+set wildmenu			" autocomplete on tab
 set incsearch                   " incremental search
 set hidden                      " multiple buffers
 set t_Co=256                    " 256 colors if supported.
 set number relativenumber       " line numbers
 set clipboard=unnamedplus       " global clipboard support.
 
-syntax enable
+syntax on 
 let g:rehash256 = 1
 
 " mapping escape to exit instert mode
