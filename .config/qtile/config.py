@@ -137,7 +137,7 @@ keys.extend([
 ])
 
 layout_theme = {
-    "border_width"  : 3,
+    "border_width"  : 1,
     "margin"        : 16,
     "border_normal" : colors[0],
     "border_focus"  : colors[6],
@@ -191,7 +191,7 @@ screens = [
                     padding                     = 25,
                 ),
                 widget.WindowName(
-                    format                      = ''
+                    format                      = '',
                 ),
                 widget.CPU(
                     fontsize                    = 10,
