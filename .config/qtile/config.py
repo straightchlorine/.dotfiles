@@ -128,7 +128,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 # defining a drop-down terminal
 groups.append(
     ScratchPad("scratchpad", [
-        DropDown("term", terminal, opacity=0.7)
+        DropDown("term", terminal, opacity=0.9)
     ])
 )
 keys.extend([
