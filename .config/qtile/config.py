@@ -20,7 +20,7 @@ keys = [                                # binds
         Key([mod], "Return",
             lazy.spawn(terminal), desc="terminal"),
         Key([mod, "shift"], "Return",
-            lazy.spawn("rofi -show run -theme ~/.cache/wal/colors-rofi-dark.rasi"), desc="launcher"),
+            lazy.spawn("/home/goldberg/.config/rofi/bin/launcher_text"), desc="launcher"),
         Key([mod], "Tab",
             lazy.next_layout(), desc="toggle between layouts"),
         Key([mod, "shift"], "c",
