@@ -86,6 +86,15 @@ function spark -d "sparkline generator"
     '
 end
 
+function origin
+        wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Origin/Origin.exe &
+end
+
+# runs launcher
+function genshin
+        wine ~/.wine/drive_c/Program\ Files/Genshin\ Impact/launcher.exe &
+end
+
 # displays the commits 
 # lolcat with low frequency creates various gradient colouring for the 
 function commits
