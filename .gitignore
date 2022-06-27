@@ -23,4 +23,9 @@
 !/.config/qtile/*.py
 !/.config/qtile/scripts
 
+!/.config/awesome/
+/.config/awesome/themes/default*
+
+!/.config/rofi
+
 *.backup
