@@ -24,7 +24,7 @@
 !/.config/qtile/scripts
 
 !/.config/awesome/
-/.config/awesome/themes/default*
+/.config/awesome/themes/initial/*
 
 !/.config/rofi
 
