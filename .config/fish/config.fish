@@ -190,6 +190,12 @@ alias free='free -m'
 # fast access to the journal
 alias jctl="journalctl -p 3 -xb"
 
+# test awesome configuration
+function testwm
+	kill Xephyr
+	Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome
+end
+
 # colorscripts after opening terminal
 colorscript random
 
