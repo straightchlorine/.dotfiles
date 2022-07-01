@@ -109,7 +109,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro 
+    family: cozette
+
     
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -120,7 +121,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro 
+    family: cozette 
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -131,7 +132,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro 
+    family: cozette 
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -142,13 +143,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    family: cozette
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  size: 10 
+  size: 20
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -289,7 +290,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-  background_opacity: 0.2
+  background_opacity: 0.9
 # background_opacity: 0.80
 
 #selection:
