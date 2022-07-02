@@ -1,0 +1,2 @@
+require(... .. ".bar")
+require(... .. ".titlebar")
