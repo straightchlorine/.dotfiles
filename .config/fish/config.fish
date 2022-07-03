@@ -196,6 +196,11 @@ function testwm
 	Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome
 end
 
+#move to folder
+function move --argument filename
+	mv filename ~/.config/cool_images
+end
+
 # colorscripts after opening terminal
 colorscript random
 
