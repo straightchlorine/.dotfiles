@@ -76,12 +76,17 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
+   s.mypromptbox = awful.widget.prompt()
     -- Create a taglist widget
+   -- s.mytaglist = require("aesthetics.tag_list") 
+
     s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
+            screen = s,
+            filter = awful.widget.taglist.filter.all,
+
+            style = {
+        	    shape = gears.shape.hexagon
+            },
     }
 
     -- Create a tasklist widget
@@ -106,7 +111,7 @@ awful.screen.connect_for_each_screen(function(s)
 	},
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-	     clock
+	    clock
         },
     }
 end)
