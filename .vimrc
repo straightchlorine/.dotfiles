@@ -1,3 +1,4 @@
+
 " plug-vim setup
 call plug#begin('~/.vim/plugged')
 
@@ -94,11 +95,13 @@ set linespace=0
 
 " non-normal modes showing in powerline and below powerline.
 set noshowmode
-
+    
 " identation settings
+set tabstop=4                   " to four spaces 
+set shiftwidth=4                " one space equivalent 
 set expandtab                   " replaces tab with adequate number of spaces 
 set smarttab                    " properly verifies how many spaces are left for a proper tab 
-set shiftwidth=4                " one space equivalent set tabstop=4                   "                      to four spaces 
+
 
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '►'

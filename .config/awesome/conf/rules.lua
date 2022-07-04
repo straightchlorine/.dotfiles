@@ -2,11 +2,9 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local keys = require("conf.binds")
 
-
--- {{ Rules
--- Rules to apply to new clients (through the "manage" signal).
+-- rules, applying to clients
 awful.rules.rules = {
-    -- All clients will match this rule.
+    -- matches all clients
     { rule = { },
       properties = { 
                      focus = awful.client.focus.filter,
@@ -17,7 +15,7 @@ awful.rules.rules = {
      }
     },
 
-    -- Floating clients.
+    -- floating clients
     { rule_any = {
         instance = {
           "DTA",  -- Firefox addon DownThemAll.

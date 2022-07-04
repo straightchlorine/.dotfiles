@@ -1,5 +1,6 @@
 local naughty = require("naughty")
 
+-- basically initial snipped of code from rc.lua sample
 local function error_handling ()
 	-- error notification
 	if awesome.startup_errors then
@@ -17,7 +18,7 @@ local function error_handling ()
 	        in_error = true
 	
 	        naughty.notify({ preset = naughty.config.presets.critical,
-	                         title = "error (-_-)",
+	                         title = "dumbass (-_-)",
 	                         text = tostring(err) })
 	        in_error = false
 	    end)

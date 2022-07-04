@@ -1,25 +1,29 @@
-require("awful.hotkeys_popup.keys")
-
-local awful = require("awful")
-local gears = require("gears")
-local naughty = require("naughty")
-local gears = require("gears")
+-- default applications
 local apps = require("conf.applications")
+
+-- required modules
+local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local gears = require("gears")
+local gears = require("gears")
+
+-- in the future (notifications not yet implemented)
+local naughty = require("naughty")
+
 
 local keys = {}
 
--- Key aliases
+-- key aliases
 -- ~-~-~-~-~-~-~-~-~-~-~-~-
 mod = "Mod4"
 alt = "Mod1"
 ctrl = "Control"
 shift = "Shift"
 
--- Global key bindings
+-- global key bindings
 -- ~-~-~-~-~-~-~-~-~-~-~-~-
 keys.globalkeys = gears.table.join(
-	-- Window manager
+	-- window manager
 	-- ~-~-~-~-~-~-~-~-
 	awful.key({ mod, ctrl }, "r", awesome.restart,
 		{ description = "restart", group = "wm" }),
@@ -28,9 +32,9 @@ keys.globalkeys = gears.table.join(
 	awful.key({ mod }, "F1", hotkeys_popup.show_help,
 		{ description = "help", group = "wm" }),
 
-	-- Hardware
+	-- hardware
 	-- ~-~-~-~-~-~-~-~-
-	-- Brightness
+	-- brightness
 	awful.key( { }, "XF86MonBrightnessDown",
         	function ()
             		awful.spawn.with_shell("light -U 10")
@@ -43,7 +47,7 @@ keys.globalkeys = gears.table.join(
        		end,
         { description = "increase brightness", group = "brightness" }),
 
-	-- Volume
+	-- volume
 	awful.key( { }, "XF86AudioRaiseVolume",
 		function ()
 			awful.spawn.with_shell("amixer set Master 2%+")
@@ -62,45 +66,45 @@ keys.globalkeys = gears.table.join(
 		end,
 	{ description = "mute", group = "volume" }),
 
-	-- Applications
+	-- shortcuts to applications
 	-- ~-~-~-~-~-~-~-~-
-	-- Terminal
+	-- terminal
 	awful.key({ mod }, "Return", function()
 		awful.spawn(apps.defaults.terminal)
 	end,
 	{ descrpion = "terminal", group = "applications" }),
 
-	-- Application launcher
+	-- application launcher
 	awful.key({ mod }, "r", function()
 		awful.spawn(apps.defaults.launcher)
 	end,
 	{ desciption = "application launcher", group = "applications" }),
 
-	-- File manager
+	-- file manager
 	awful.key({ mod, shift }, "f", function()
 		awful.spawn(apps.defaults.file_manager)
 	end,
 	{ descrption = "file manager", gruop = "applications" }),
 
-	-- Music player
+	-- music player
 	awful.key({ mod, shift }, "m", function()
 		awful.spawn(apps.defaults.music_player)
 	end, 
 	{ description = "music player", group = "applications" }),
 
-	-- Graphical IDE
+	-- graphical ide
 	awful.key({ mod, shift }, "c", function()
 		awful.spawn(apps.defaults.graphical_ide)
 	end,
 	{ description = "graphical ide", group = "applications" }),
 
-	-- Browser
+	-- browser
 	awful.key({ mod, shift }, "w", function()
 		awful.spawn(apps.defaults.browser)
 	end,
 	{ description = "web browser", group = "applications" }),
 
-	-- Navigation
+	-- navigation
 	-- ~-~-~-~-~-~-~-~-
 	awful.key({ mod }, "j", 
 		function()
@@ -123,7 +127,7 @@ keys.globalkeys = gears.table.join(
 		end,
         { description = "focus on the previous client", group = "navigation" }),
 
-	-- Layout manipulation
+	-- layout navigation
 	-- ~-~-~-~-~-~-~-~-
 	awful.key({ mod, shift }, "j",
 		function()
@@ -221,7 +225,7 @@ keys.globalkeys = gears.table.join(
     	{ description = "lua execute prompt",
 	  group = "wm" }),
 
-        -- Screen focus
+        -- screen focus
 	-- ~-~-~-~-~-~-~-~-
 	awful.key({ mod, control }, "j",
 		function()
@@ -238,11 +242,11 @@ keys.globalkeys = gears.table.join(
 	  group = "screen" })
 )
 
--- Client key bindings
+-- client key bindings
 -- ~-~-~-~-~-~-~-~-~-~-~-~-
 keys.clientkeys = gears.table.join(
 	
-	-- Fullscreen
+	-- fullscreen
 	awful.key({ mod }, "f",
         	function (c)
             		c.fullscreen = not c.fullscreen
@@ -250,40 +254,40 @@ keys.clientkeys = gears.table.join(
         	end,
     	{ description = "toggle fullscreen", group = "window management" }),
 	
-	-- Killing the focused application
+	-- killing the focused application
     	awful.key({ mod, shift }, "q",
 		function (c)
 			c:kill()
 		end,
 	{ description = "close", group = "window management" }),
 
-	-- Toggle floating layout
+	-- toggle floating layout
     	awful.key({ mod, control }, "space",
 		awful.client.floating.toggle                     ,
         { description = "toggle floating", group = "layout" }),
 
-	-- Switch focus to master client
+	-- switch focus to master client
     	awful.key({ mod, control }, "Return",
 		function (c)
 			c:swap(awful.client.getmaster())
 		end,
         { description = "move to master", group = "window management" }),
 
-	-- Keeping current window on top (floating)
+	-- keeping current window on top (floating)
     	awful.key({ mod }, "t",
 		function (c)
 			c.ontop = not c.ontop
 		end,
         { description = "toggle keep on top", group = "window management" }),
 	
-	-- Minimalize
+	-- minimalize
     	awful.key({ mod }, "n",
         	function (c)
             		c.minimized = true
         	end,
         { description = "minimize", group = "window management" }),
 
-	-- Toggle maximize	
+	-- toggle maximize	
     	awful.key({ mod }, "m",
         	function (c)
             		c.maximized = not c.maximized
@@ -291,7 +295,7 @@ keys.clientkeys = gears.table.join(
         	end,
         { description = "toggle maximize", group = "window management" }),
 
-	-- Toggle maximize vertically
+	-- toggle maximize vertically
     	awful.key({ mod, control }, "m",
         	function (c)
             		c.maximized_vertical = not c.maximized_vertical
@@ -299,7 +303,7 @@ keys.clientkeys = gears.table.join(
         	end,
         { description = "toggle maximize vertically", group = "window management" }),
 	
-	-- Toggle maximize horizontally
+	-- toggle maximize horizontally
     	awful.key({ mod, shift}, "m",
 		function (c)
         	    c.maximized_horizontal = not c.maximized_horizontal
@@ -313,8 +317,9 @@ keys.clientkeys = gears.table.join(
 local n = 10
 for i = 1, n do
     keys.globalkeys = gears.table.join(keys.globalkeys,
-        -- View tag only.
+        -- view tag only.
         awful.key({ mod }, "#" .. i + 9,
+		-- if focused on already focused tag, return to previously focused tag
 		function ()
 			local screen = mouse.screen
 			local tag = screen.tags[i]
@@ -326,17 +331,9 @@ for i = 1, n do
 				end
 			end
 		end,
-		-- original script
-                -- function ()
-                --       local screen = awful.screen.focused()
-                --       local tag = screen.tags[i]
-                --       if tag then
-                --          tag:view_only()
-                --       end
-                -- end,
         { description = "view tag #"..i, group = "tag" }),
 
-        -- Toggle tag display.
+        -- toggle tag display.
         awful.key({ mod, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = awful.screen.focused()
@@ -347,7 +344,7 @@ for i = 1, n do
                   end,
         { description = "toggle tag #" .. i, group = "tag" }),
 
-        -- Move client to tag.
+        -- move client to tag.
         awful.key({ mod, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
@@ -359,7 +356,7 @@ for i = 1, n do
                   end,
         { description = "move focused client to tag #"..i, group = "tag" }),
 
-        -- Toggle tag on focused client.
+        -- toggle tag on focused client.
         awful.key({ mod, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then

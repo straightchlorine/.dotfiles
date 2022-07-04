@@ -18,6 +18,7 @@
 /.config/nitrogen/nitrogen.cfg
 !/.config/picom
 !/.config/qtile
+!/.config/nvim
 
 /.config/qtile/*
 !/.config/qtile/*.py

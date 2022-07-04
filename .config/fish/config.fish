@@ -198,7 +198,7 @@ end
 
 #move to folder
 function move --argument filename
-	mv filename ~/.config/cool_images
+	mv ~/.config/review_wallpapers/$filename ~/.config/cool_images
 end
 
 # colorscripts after opening terminal

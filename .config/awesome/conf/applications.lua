@@ -21,7 +21,7 @@ return {
 		-- Browser
 		browser = "firefox",
 		
-		--todo
+		-- in the future, for now not functional
 		bluetooth_manager = "not yet",
 		power_manager = "not yet", 
 	}
