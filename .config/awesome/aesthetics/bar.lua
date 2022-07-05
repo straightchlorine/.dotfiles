@@ -71,42 +71,24 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s,
         filter = awful.widget.taglist.filter.all,
         style = {
-            shape = gears.shape.square
+            shape = gears.shape.circle,
         },
         layout = {
-            spacing_widget = {
-                shape = gears.shape.square,
-            },
             layout = wibox.layout.fixed.horizontal
         },
         widget_template = {
             {
-                {
-                    {
-                        id  = 'index_markup',
-                        widget = wibox.widget.textbox,
-                    },
-                    margins = 1,
-                    widget = wibox.container.margin,
-                },
-                bg = '#ffffff',
-                shape = gears.shape.square,
-                widget = wibox.container.background,
-                left = 10,
-                right = 10,
-                widget = wibox.container.margin
+                id = 'index_markup',
+                widget = wibox.widget.textbox,
             },
             bg = '#ffffff',
-            widget = wibox.container.background,
+            fg = '#000000',
+            widget = wibox.widget.background,
 
             create_callback = function(self, c3, index, objects)
                 self:get_children_by_id('index_markup')[1].markup = '<b> '..index..' </b>'
             end,
-
         },
-        
-
-
         buttons = taglist_buttons
     }
     -- Create a tasklist widget
@@ -116,20 +98,22 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons
     }
 
-    -- Create the wibox
-    s.mywibox = awful.wibar({position = "top", screen = s})
+    s.bar_overlord = awful.wibar({position = "top", screen = s, stretch = false, width = 1880})
+    awful.placement.top(s.bar_overlord, { margins = 10 })
 
-    -- Add widgets to the wibox
-    s.mywibox:setup{
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            s.taglist
-        },
-        {layout = wibox.layout.fixed.horizontal},
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            clock
-        }
+    s.bar_overlord:setup {
+            layout = wibox.layout.align.horizontal,
+            {
+                layout = wibox.layout.fixed.horizontal,
+                    s.taglist
+            },
+            {
+                layout = wibox.layout.fixed.horizontal,
+            },
+            {
+                layout = wibox.layout.fixed.horizontal,
+                clock
+            },
+
     }
 end)
