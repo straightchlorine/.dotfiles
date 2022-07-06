@@ -75,7 +75,7 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s,
         filter = awful.widget.taglist.filter.all,
         style = {
-            shape = gears.shape.circle,
+            shape = gears.shape.square,
         },
         layout = {
             layout = wibox.layout.fixed.horizontal
@@ -93,13 +93,12 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 widget = wibox.widget.background,
             },
-            fg = '#000000',
-            bg = '#ffffff',
+            id = 'background_role',
             widget = wibox.widget.background,
 
             -- changes background colour on mouse hover (white to grey)
             create_callback = function(self, c3, index, objects)
-                self:get_children_by_id('index_markup')[1].markup = '<b> '..index..' </b>'
+              self:get_children_by_id('index_markup')[1].markup = '<b> '..index..' </b>'
                 self:connect_signal('mouse::enter', function()
                     if self.bg ~= '#e8e8e8' then
                         self.backup = self.bg
