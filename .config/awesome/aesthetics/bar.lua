@@ -17,14 +17,18 @@ clock = wibox.widget.textclock("%a %b %d %T", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-                            awful.button({}, 1, function(t) t:view_only() end),
-                            awful.button({modkey}, 1, function(t)
-        if client.focus then client.focus:move_to_tag(t) end
-    end), awful.button({}, 3, awful.tag.viewtoggle),
-                            awful.button({modkey}, 3, function(t)
+    awful.button({}, 1, function(t) t:view_only() end),
+    awful.button({modkey}, 1, function(t)
+        if client.focus then
+            client.focus:move_to_tag(t)
+        end
+    end), 
+    awful.button({}, 3, awful.tag.viewtoggle),
+    awful.button({modkey}, 3, function(t)
         if client.focus then client.focus:toggle_tag(t) end
-    end), awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
-                            awful.button({}, 5, function(t)
+    end), 
+    awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({}, 5, function(t)
         awful.tag.viewprev(t.screen)
     end))
 
@@ -78,18 +82,39 @@ awful.screen.connect_for_each_screen(function(s)
         },
         widget_template = {
             {
-                id = 'index_markup',
-                widget = wibox.widget.textbox,
+                {
+                    {
+                        id = 'index_markup',
+                        widget = wibox.widget.textbox,
+                    },
+                    left = 6,
+                    right = 6,
+                    widget = wibox.container.margin,
+                },
+                widget = wibox.widget.background,
             },
-            bg = '#ffffff',
             fg = '#000000',
+            bg = '#ffffff',
             widget = wibox.widget.background,
 
+            -- changes background colour on mouse hover (white to grey)
             create_callback = function(self, c3, index, objects)
                 self:get_children_by_id('index_markup')[1].markup = '<b> '..index..' </b>'
+                self:connect_signal('mouse::enter', function()
+                    if self.bg ~= '#e8e8e8' then
+                        self.backup = self.bg
+                        self.has_backup = true
+                    end
+                    self.bg = '#e8e8e8'
+                end)
+                self:connect_signal('mouse::leave',
+                    function()
+                        if self.has_backup then self.bg = self.backup 
+                    end
+                end)
             end,
         },
-        buttons = taglist_buttons
+        buttons = taglist_buttons,
     }
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
@@ -98,7 +123,7 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons
     }
 
-    s.bar_overlord = awful.wibar({position = "top", screen = s, stretch = false, width = 1880})
+    s.bar_overlord = awful.wibar({position = "top", screen = s, stretch = false, width = 1880, opacity = 0.85})
     awful.placement.top(s.bar_overlord, { margins = 10 })
 
     s.bar_overlord:setup {

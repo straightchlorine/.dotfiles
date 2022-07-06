@@ -36,16 +36,16 @@ keys.globalkeys = gears.table.join(
 	-- ~-~-~-~-~-~-~-~-
 	-- brightness
 	awful.key( { }, "XF86MonBrightnessDown",
-        	function ()
-            		awful.spawn.with_shell("light -U 10")
-        	end,
-        { description = "decrease brightness", group = "brightness" }),
+       	function ()
+           		awful.spawn.with_shell("light -U 10")
+       	end,
+    { description = "decrease brightness", group = "brightness" }),
 
-    	awful.key( { }, "XF86MonBrightnessUp",
-        	function ()
-        	    awful.spawn.with_shell("light -A 10")
-       		end,
-        { description = "increase brightness", group = "brightness" }),
+   	awful.key( { }, "XF86MonBrightnessUp",
+       	function ()
+       	    awful.spawn.with_shell("light -A 10")
+     		end,
+    { description = "increase brightness", group = "brightness" }),
 
 	-- volume
 	awful.key( { }, "XF86AudioRaiseVolume",
@@ -323,6 +323,7 @@ for i = 1, n do
 		function ()
 			local screen = mouse.screen
 			local tag = screen.tags[i]
+            
 			if tag then
 				if tag == screen.selected_tag then
 					awful.tag.history.restore()
