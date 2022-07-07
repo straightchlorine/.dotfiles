@@ -1,24 +1,24 @@
--- Terminal prefix
+-- terminal prefix
 local emulator_exec = "alacritty -e "
 
+-- default applications
 defaults = {}
 
 return {
-	-- Default applications
 	defaults = {
-		-- Terminal
+		-- terminal
 		terminal = emulator_exec .. "fish",
-		-- File manager
+		-- file manager
 		file_manager = emulator_exec .. "ranger",
-		-- Music player
+		-- music player
 		music_player = emulator_exec .. "ncmpcpp",
-		-- Application launcher
+		-- application launcher
 		launcher = "rofi -combi-modi {run, windows, ssh} -show run",
-		-- Graphical IDE
+		-- graphical ide
 		graphical_ide = "code",
-		-- Terminal IDE
+		-- terminal ide
 		terminal_ide = "nvim",
-		-- Browser
+		-- browser
 		browser = "firefox",
 		
 		-- in the future, for now not functional

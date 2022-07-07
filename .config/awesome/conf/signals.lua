@@ -1,7 +1,7 @@
 local beautiful = require("beautiful")
 local awful = require("awful")
 
-
+-- for now default
 local function signals ()
 	-- Signal function to execute when a new client appears.
 	client.connect_signal("manage", function (c)
