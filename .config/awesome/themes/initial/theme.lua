@@ -4,6 +4,7 @@
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
+local beautiful = require("beautiful")
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
@@ -12,24 +13,22 @@ local theme = {}
 
 theme.font          = "sans 8"
 
-theme.bg_normal     = "#fffff"
-theme.bg_focus      = "#535d6c"
+theme.bg_normal     = "#ffffff"
+theme.bg_focus      = "#fff0dd"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#ffffff"
-theme.fg_focus      = "#ffffff"
+theme.fg_normal     = "#000000"
+theme.fg_focus      = "#000000"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(10)
-theme.border_width  = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+ 
+theme.titlebar_bg_focus = '#f8f8f8'
+theme.titlebar_fg_focus = '#000000'
 
-theme.titlebar_bg_focus = '#fffff'
+theme.taglist_bg_focus = '#e3e3f2'
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -41,9 +40,8 @@ theme.titlebar_bg_focus = '#fffff'
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
---theme.taglist_bg_focus = "#ff0000"
 
-local taglist_square_size = dpi(2)
+local taglist_square_size = dpi(3)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )

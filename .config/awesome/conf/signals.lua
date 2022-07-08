@@ -1,6 +1,6 @@
 local beautiful = require("beautiful")
 local awful = require("awful")
-
+-- local tag = require("aesthetics.bar")
 -- for now default
 local function signals ()
 	-- Signal function to execute when a new client appears.
@@ -17,15 +17,11 @@ local function signals ()
 	    end
 	end)
 
-
-
 	-- Enable sloppy focus, so that focus follows mouse.
 	client.connect_signal("mouse::enter", function(c)
 	    c:emit_signal("request::activate", "mouse_enter", {raise = false})
 	end)
-	
-	client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-	client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
 end
 
 signals()

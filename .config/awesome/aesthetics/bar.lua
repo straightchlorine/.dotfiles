@@ -12,8 +12,6 @@ for s = 1, screen.count() do
     gears.wallpaper.maximized(beautiful.wallpaper, s, true)
 end
 
--- clock
-clock = wibox.widget.textclock("%a %b %d %T", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -67,6 +65,7 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag({"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}, s,
               awful.layout.layouts[1])
 
+
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create a taglist widget
@@ -98,23 +97,34 @@ awful.screen.connect_for_each_screen(function(s)
 
             -- changes background colour on mouse hover (white to grey)
             create_callback = function(self, c3, index, objects)
-              self:get_children_by_id('index_markup')[1].markup = '<b> '..index..' </b>'
-                self:connect_signal('mouse::enter', function()
-                    if self.bg ~= '#e8e8e8' then
-                        self.backup = self.bg
-                        self.has_backup = true
+                self:get_children_by_id('index_markup')[1].markup = '<b> '..index..' </b>'
+                self:connect_signal('mouse::enter',
+                    function()
+                        if self.bg ~= '#e8e8e8' then
+                            self.backup = self.bg
+                            self.has_backup = true
+                        end
+                        self.bg = '#e8e8e8'
                     end
-                    self.bg = '#e8e8e8'
-                end)
+                )
                 self:connect_signal('mouse::leave',
                     function()
-                        if self.has_backup then self.bg = self.backup 
+                        if self.has_backup
+                            then self.bg = self.backup 
+                        end
                     end
-                end)
-            end,
+                )
+            end
         },
+
         buttons = taglist_buttons,
     }
+
+
+
+    -- clock
+    clock = wibox.widget.textclock("%a %b %d %T", 1)
+    
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen = s,
@@ -129,15 +139,21 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.align.horizontal,
             {
                 layout = wibox.layout.fixed.horizontal,
-                    s.taglist
+                s.taglist
             },
             {
                 layout = wibox.layout.fixed.horizontal,
             },
             {
-                layout = wibox.layout.fixed.horizontal,
-                clock
+                {
+                    layout = wibox.layout.fixed.horizontal,
+                    clock,
+                },
+                right = 10,
+                widget = wibox.container.margin,
             },
 
     }
 end)
+
+return awful.tags
