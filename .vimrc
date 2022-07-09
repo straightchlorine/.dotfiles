@@ -1,3 +1,9 @@
+" auto install code snippet
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " plug-vim setup
 call plug#begin('~/.vim/plugged')
@@ -5,9 +11,9 @@ call plug#begin('~/.vim/plugged')
     " plugin management
     Plug 'gmarik/Vundle.vim'                            " vundle
     
-    " visual changes
-    Plug 'vim-airline/vim-airline'                      " airline status bar
-    Plug 'vim-airline/vim-airline-themes'               " airline status bar themes
+    " visual changes(for now replaced by powerline)
+    " Plug 'vim-airline/vim-airline'                    " airline status bar
+    " Plug 'vim-airline/vim-airline-themes'             " airline status bar themes
     Plug 'frazrepo/vim-rainbow'                         " coloured parentheses
    
     " file management
@@ -42,16 +48,15 @@ filetype plugin indent on    " required
 
 " settings
 
-set nobackup                    " no backups
-set noswapfile                  " turning off generation of swapfiles
+set nobackup                " no backups
+set noswapfile              " turning off generation of swapfiles
 
-set path+=**			" searching direcotry recursively
-set wildmenu			" autocomplete on tab
-set incsearch                   " incremental search
-set hidden                      " multiple buffers
-set t_Co=256                    " 256 colors if supported.
-set number relativenumber       " line numbers
-set clipboard=unnamedplus       " global clipboard support.
+set path+=**			    " searching direcotry recursively
+set wildmenu			    " autocomplete on tab
+set incsearch               " incremental search
+set t_Co=256                " 256 colors if supported.
+set number relativenumber   " line numbers
+set clipboard=unnamedplus   " global clipboard support.
 
 syntax on 
 let g:rehash256 = 1
@@ -63,7 +68,7 @@ let g:rehash256 = 1
 set laststatus=2
 
 " airline customization
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 10
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}

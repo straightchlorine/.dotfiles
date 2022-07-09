@@ -24,7 +24,9 @@ theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(10)
- 
+
+theme.titlebar_bg_normal = '#000000'
+theme.titlebar_fg_normal = '#ffffff'
 theme.titlebar_bg_focus = '#f8f8f8'
 theme.titlebar_fg_focus = '#000000'
 

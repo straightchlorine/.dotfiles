@@ -19,6 +19,7 @@
 !/.config/picom
 !/.config/qtile
 !/.config/nvim
+!/.config/powerline
 
 /.config/qtile/*
 !/.config/qtile/*.py
