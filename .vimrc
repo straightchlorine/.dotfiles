@@ -11,11 +11,11 @@ call plug#begin('~/.vim/plugged')
     " plugin management
     Plug 'gmarik/Vundle.vim'                            " vundle
     
-    " visual changes(for now replaced by powerline)
-    " Plug 'vim-airline/vim-airline'                    " airline status bar
-    " Plug 'vim-airline/vim-airline-themes'             " airline status bar themes
-    Plug 'frazrepo/vim-rainbow'                         " coloured parentheses
-   
+    " visual changes
+    Plug 'vim-airline/vim-airline'                    " airline status bar
+    Plug 'vim-airline/vim-airline-themes'             " airline status bar themes
+    Plug 'frazrepo/vim-rainbow'                       " coloured parentheses
+
     " file management
     Plug 'vifm/vifm.vim'                                " vifm
     Plug 'scrooloose/nerdtree'                          " nerdtree
@@ -47,16 +47,17 @@ call plug#end()
 filetype plugin indent on    " required
 
 " settings
-
 set nobackup                " no backups
 set noswapfile              " turning off generation of swapfiles
-
+set laststatus=2
+let g:powerline_pycmd="py3"
 set path+=**			    " searching direcotry recursively
 set wildmenu			    " autocomplete on tab
 set incsearch               " incremental search
 set t_Co=256                " 256 colors if supported.
 set number relativenumber   " line numbers
 set clipboard=unnamedplus   " global clipboard support.
+
 
 syntax on 
 let g:rehash256 = 1
@@ -70,33 +71,32 @@ set laststatus=2
 " airline customization
 let g:airline_powerline_fonts = 10
 
+" airline settings
+let g:airline_theme='deus'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-" unicode symbols
-let g:airline_left_sep = ' ' 
-"let g:airline_left_sep = '▶'
-let g:airline_right_sep = ' '
-"let g:airline_right_sep = '◀'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.colnr = ' :'
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ' :'
+let g:airline_symbols.maxlinenr = '☰ '
+let g:airline_symbols.dirty='⚡'
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" airline symbols
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-set linespace=0
+"let g:airline_extensions = ['branch', 'tabline', 'vim.battery', 'LanguageClient', 'promptline', 'vimagit', 'syntastic']
+let g:airline_extendsions = ['vim-battery']
+let g:airline#extensions#battery#enabled = 1
 
 " non-normal modes showing in powerline and below powerline.
 set noshowmode
