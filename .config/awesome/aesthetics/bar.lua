@@ -123,8 +123,9 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- clock
-    clock = wibox.widget.textclock("%a %b %d %T", 1)
-    
+    local clock = wibox.widget.textclock("%a %b %d %T", 1)
+    local calendar = awful.widget.calendar_popup.month()
+
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen = s,
@@ -154,6 +155,8 @@ awful.screen.connect_for_each_screen(function(s)
             },
 
     }
+
+    calendar:attach(clock, "tr")
 end)
 
 return awful.tags
