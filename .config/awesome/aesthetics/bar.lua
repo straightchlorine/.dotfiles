@@ -2,6 +2,7 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
+local naughty = require("naughty")
 local wibox = require("wibox")
 
 -- setting theme
@@ -65,7 +66,6 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag({"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}, s,
               awful.layout.layouts[1])
 
-
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create a taglist widget
@@ -121,10 +121,28 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
 
-
     -- clock
     local clock = wibox.widget.textclock("%a %b %d %T", 1)
-    local calendar = awful.widget.calendar_popup.month()
+    -- holds calendar notification object
+    local calendar_notifications = {}
+
+    visible = false
+    clock:connect_signal("button::press",
+        function()
+            if not visible then
+                calendar_notifications.calendar = naughty.notify({
+                    replaces_id = 100,
+                    title = "test",
+                    text = 'testtest',
+                    timeout = 0,
+                })
+                visible = true;
+            else
+                naughty.destroy(calendar_notifications.calendar)
+                visible = false;
+            end
+        end
+    )
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
@@ -156,7 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     }
 
-    calendar:attach(clock, "tr")
+    -- calendar:attach(clock, "tr")
 end)
 
 return awful.tags
