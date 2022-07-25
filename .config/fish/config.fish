@@ -17,6 +17,9 @@ set VISUAL "emacsclient -c -a emacs"
 # setting the manpager to bat
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
+# setting the GPG_TTY environmental variable
+set -x GPG_TTY (tty)
+
 # setting default key bindings to vi mode
 function fish_user_key_bindings
   fish_vi_key_bindings
