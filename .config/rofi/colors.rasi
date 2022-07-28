@@ -1,0 +1,7 @@
+* {
+    transparent: #00000000;
+    bg:          #000000ff;
+    fg:          #ffffffff;
+    select:      #28282828; /* temp */
+    border:      #78787878; /* temp */
+}
